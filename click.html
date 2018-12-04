@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<HTML>
+ <HEAD>
+  <TITLE>事件的绑定与解绑</TITLE>
+   <meta charset="utf-8"/>
+
+   <style>
+   </style>
+ </HEAD>
+
+ <BODY>
+	 <div>
+	 <button>11</button>
+	 <button>22</button>
+	 <button>33</button>
+	</div>
+	<script>
+  var list=document.getElementsByTagName('button')
+  
+  //方法0
+	// for(let i=0;i<3;i++){
+	// 	list[i].onclick=function(){
+	// 		console.log(i)
+	// 	}
+	// }
+	//方法1
+	for(i=0;i<3;i++){
+		list[i].onclick=(function(k){
+			return function(){console.log(k)};
+		})(i)
+  }
+  //方法2
+  for(var i = 0; i < 3; i++) {
+    (function (i) {
+        list[i].addEventListener('click', function () {
+            console.log(i);
+        }, false);
+    })(i)
+  }
+	</script>
+ </BODY>
+</HTML>
